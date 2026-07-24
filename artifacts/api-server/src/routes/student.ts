@@ -49,7 +49,10 @@ function projectInputToDb(data: ReturnType<typeof CreateProjectBody.parse>, stud
     securityNoRealPersonalData: data.securityAndEthics.noRealPersonalData,
     securityNoSecretsInGithub: data.securityAndEthics.noSecretsInGithub,
     securityCopyrightCompliant: data.securityAndEthics.copyrightCompliant,
-    status: (data.status ?? "draft") as "draft" | "pending",
+    // Admin onayı geçici olarak devre dışı: gönderilen projeler doğrudan yayınlanır.
+    status: (data.status === "pending" ? "approved" : (data.status ?? "draft")) as
+      | "draft"
+      | "approved",
   };
 }
 
@@ -115,11 +118,8 @@ router.patch("/student/projects/:id", requireAuth, async (req, res): Promise<voi
     return;
   }
 
-  if (existing.status === "approved") {
-    res.status(403).json({ error: "Onaylanan projeler düzenlenemez." });
-    return;
-  }
-
+  // Admin onayı geçici olarak devre dışı: onaylı projeler de düzenlenebilir.
+  // Admin onayı yeniden aktif edilirse, bu düzenleme izni gözden geçirilmelidir.
   const bodyParsed = UpdateProjectBody.safeParse(req.body);
   if (!bodyParsed.success) {
     res.status(400).json({ error: bodyParsed.error.message });
@@ -157,8 +157,8 @@ router.patch("/student/projects/:id", requireAuth, async (req, res): Promise<voi
     updateData.securityCopyrightCompliant = d.securityAndEthics.copyrightCompliant;
   }
   if (d.status !== undefined) {
-    updateData.status = d.status as "draft" | "pending";
-    // Reset admin feedback when resubmitting
+    // Admin onayı geçici olarak devre dışı: gönderilen projeler doğrudan yayınlanır.
+    updateData.status = (d.status === "pending" ? "approved" : d.status) as "draft" | "approved";
     if (d.status === "pending") updateData.adminFeedback = null;
   }
 

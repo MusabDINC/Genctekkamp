@@ -113,44 +113,43 @@ export default function Dashboard() {
                 </p>
               </CardContent>
               
-              <CardFooter className="p-4 bg-muted/20 border-t flex items-center justify-between gap-2">
-                {project.status === 'approved' ? (
+              <CardFooter className="p-4 bg-muted/20 border-t flex flex-col gap-2">
+                {project.status === 'approved' && (
                   <Link href={`/projects/${project.id}`} className="w-full">
                     <Button variant="outline" className="w-full gap-2">
                       <ExternalLink className="w-4 h-4" /> Vitrinde Gör
                     </Button>
                   </Link>
-                ) : (
-                  <div className="flex w-full gap-2">
-                    <Link href={`/dashboard/projects/${project.id}/edit`} className="flex-1">
-                      <Button variant="default" className="w-full gap-2" disabled={project.status === 'pending' || project.status === 'approved'}>
-                        <Edit2 className="w-4 h-4" /> Düzenle
-                      </Button>
-                    </Link>
-                    
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="destructive" size="icon" className="shrink-0" disabled={project.status === 'approved'}>
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Projeyi silmek istediğinize emin misiniz?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Bu işlem geri alınamaz. "{project.title}" projesi kalıcı olarak silinecektir.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>İptal</AlertDialogCancel>
-                          <AlertDialogAction onClick={() => handleDelete(project.id)} className="bg-destructive hover:bg-destructive/90">
-                            Evet, Sil
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
                 )}
+                <div className="flex w-full gap-2">
+                  <Link href={`/dashboard/projects/${project.id}/edit`} className="flex-1">
+                    <Button variant="default" className="w-full gap-2" disabled={project.status === 'pending'}>
+                      <Edit2 className="w-4 h-4" /> Düzenle
+                    </Button>
+                  </Link>
+
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="destructive" size="icon" className="shrink-0">
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Projeyi silmek istediğinize emin misiniz?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Bu işlem geri alınamaz. "{project.title}" projesi kalıcı olarak silinecektir.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>İptal</AlertDialogCancel>
+                        <AlertDialogAction onClick={() => handleDelete(project.id)} className="bg-destructive hover:bg-destructive/90">
+                          Evet, Sil
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
               </CardFooter>
             </Card>
           ))}

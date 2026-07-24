@@ -1,0 +1,265 @@
+<!DOCTYPE html><html class="light" lang="tr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Register - Fikirden Ürüne Proje Vitrini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#edeeef",
+                    "tertiary-fixed": "#d8e2ff",
+                    "on-secondary-fixed": "#141b2b",
+                    "primary-fixed": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary": "#575e70",
+                    "on-primary-container": "#ffcdc7",
+                    "border-subtle": "#e5e7eb",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "background": "#f8f9fa",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#ffb4ab",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-white": "#ffffff",
+                    "tertiary-container": "#005ac2",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#5c6274",
+                    "surface": "#f8f9fa",
+                    "surface-bright": "#f8f9fa",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-container": "#d9dff5",
+                    "outline-variant": "#e4beb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001a42",
+                    "primary-container": "#b91c1c",
+                    "on-surface-variant": "#5b403d",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "on-primary-fixed": "#410002",
+                    "outline": "#8f6f6c",
+                    "tertiary": "#004394",
+                    "on-primary-fixed-variant": "#93000b",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "warning": "#f59e0b",
+                    "surface-tint": "#b91c1c",
+                    "on-secondary-fixed-variant": "#404758",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#c9d8ff",
+                    "on-surface": "#191c1d",
+                    "primary": "#93000b",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-background": "#191c1d",
+                    "surface-dim": "#d9dadb",
+                    "success": "#10b981",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-high": "#e7e8e9",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "0.5rem",
+                    "container-max": "1280px",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "stack-md": "1rem",
+                    "margin-desktop": "2rem",
+                    "stack-lg": "2rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component Shell) -->
+<header class="bg-surface-white border-b border-border-subtle shadow-sm fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">
+                Fikirden Ürüne Proje Vitrini
+            </div>
+<nav class="hidden md:flex items-center space-x-gutter">
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Projects</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">About</a>
+<a class="text-secondary font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Ethical Principles</a>
+<div class="flex items-center space-x-stack-md ml-4">
+<a class="text-secondary font-medium hover:text-primary transition-all duration-200 font-label-md text-label-md px-4 py-2" href="#">Login</a>
+<a class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:brightness-90 active:scale-95 transition-all" href="#">Register</a>
+</div>
+</nav>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Registration Section -->
+<main class="flex-grow flex items-center justify-center pt-24 pb-stack-lg px-margin-mobile">
+<!-- Background Subtle Pattern -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-[0.03]" style="background-image: radial-gradient(#93000b 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+<div class="w-full max-w-[480px]">
+<div class="bg-surface-white border border-border-subtle shadow-sm rounded-xl p-stack-lg md:p-12 relative overflow-hidden">
+<!-- Branding Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="mb-stack-lg text-center">
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">Create Account</h1>
+<p class="font-body-sm text-body-sm text-secondary">Join the community of developers and innovators.</p>
+</div>
+<!-- Social Registration -->
+
+
+<!-- Registration Form -->
+<form class="space-y-stack-md" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">person</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-subtle focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-sm" placeholder="John Doe" type="text">
+</div>
+</div>
+<!-- Email -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">mail</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-subtle focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-sm" placeholder="name@company.com" type="email">
+</div>
+</div>
+<!-- User Type Selection -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">User Type</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="type-btn active flex flex-col items-center justify-center p-3 border rounded-lg border-primary bg-primary/5 text-primary transition-all" type="button">
+<span class="material-symbols-outlined text-[20px] mb-1">school</span>
+<span class="font-label-sm">Student</span>
+</button>
+<button class="type-btn flex flex-col items-center justify-center p-3 border rounded-lg border-border-subtle text-secondary hover:border-primary/50 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px] mb-1">psychology</span>
+<span class="font-label-sm">Mentor</span>
+</button>
+<button class="type-btn flex flex-col items-center justify-center p-3 border rounded-lg border-border-subtle text-secondary hover:border-primary/50 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px] mb-1">groups</span>
+<span class="font-label-sm">General</span>
+</button>
+</div>
+</div>
+<!-- Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">lock</span>
+<input class="w-full pl-10 pr-10 py-3 rounded-lg border border-border-subtle focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-sm" placeholder="••••••••" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">lock_reset</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-subtle focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-sm" placeholder="••••••••" type="password">
+</div>
+</div>
+<!-- Terms -->
+<div class="flex items-start space-x-2 pt-2">
+<input class="mt-1 rounded text-primary focus:ring-primary border-border-subtle" id="terms" type="checkbox">
+<label class="font-body-sm text-body-sm text-secondary" for="terms">
+                            I agree to the <a class="text-primary hover:underline" href="#">Terms of Service</a> and <a class="text-primary hover:underline" href="#">Privacy Policy</a>.
+                        </label>
+</div>
+<!-- Submit -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-md text-label-md shadow-md hover:brightness-110 active:scale-[0.98] transition-all mt-4" type="submit">
+                        Register
+                    </button>
+</form>
+<div class="mt-stack-lg text-center">
+<p class="font-body-sm text-body-sm text-secondary">
+                        Already have an account? 
+                        <a class="text-primary font-semibold hover:underline" href="#">Log in</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component Shell) -->
+<footer class="bg-surface-container-low border-t border-border-subtle w-full">
+<div class="flex flex-col md:flex-row justify-between items-center py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-stack-md md:space-y-0">
+<div class="font-label-md text-label-md font-bold text-on-surface">
+                Fikirden Ürüne
+            </div>
+<div class="flex space-x-stack-lg">
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary underline transition-all" href="#">Contact Us</a>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">
+                © 2024 Fikirden Ürüne Proje Vitrini. Tüm hakları saklıdır.
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for User Type buttons
+        document.querySelectorAll('.type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                document.querySelectorAll('.type-btn').forEach(b => {
+                    b.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+                    b.classList.add('border-border-subtle', 'text-secondary');
+                });
+                // Add active classes to clicked
+                btn.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+                btn.classList.remove('border-border-subtle', 'text-secondary');
+            });
+        });
+
+        // Simple visibility toggle logic
+        const toggleBtn = document.querySelector('button[type="button"] .material-symbols-outlined:contains("visibility")');
+        // (Simplified for this static demo)
+    </script>
+
+
+</body></html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Proje Detayı | Fikirden Ürüne Proje Vitrini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Red/Pink Alert Box Style */
+        .alert-box {
+            background-color: #fff1f0;
+            border-left: 4px solid #93000b;
+        }
+        .markdown-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #191c1d;
+        }
+        .markdown-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #575e70;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "warning": "#f59e0b",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-error": "#ffffff",
+                        "border-subtle": "#e5e7eb",
+                        "surface-container": "#edeeef",
+                        "tertiary": "#004394",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#ffcdc7",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary": "#575e70",
+                        "on-tertiary-container": "#c9d8ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#93000b",
+                        "tertiary-container": "#005ac2",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed": "#001a42",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#5c6274",
+                        "outline-variant": "#e4beb9",
+                        "secondary-fixed": "#dce2f7",
+                        "error": "#ba1a1a",
+                        "outline": "#8f6f6c",
+                        "surface-tint": "#b91c1c",
+                        "inverse-primary": "#ffb4ab",
+                        "success": "#10b981",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-low": "#f3f4f5",
+                        "primary": "#93000b",
+                        "surface": "#f8f9fa",
+                        "primary-container": "#b91c1c",
+                        "primary-fixed": "#ffdad6",
+                        "on-primary-fixed": "#410002",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#5b403d",
+                        "on-surface": "#191c1d",
+                        "surface-dim": "#d9dadb",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "background": "#f8f9fa",
+                        "secondary-container": "#d9dff5",
+                        "surface-white": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "container-max": "1280px",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2rem",
+                        "margin-mobile": "1rem",
+                        "stack-md": "1rem",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface-white dark:bg-inverse-surface border-b border-border-subtle dark:border-outline-variant shadow-sm dark:shadow-none sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary cursor-pointer">Fikirden Ürüne Proje Vitrini</span>
+</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">Projects</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">About</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">Ethical Principles</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="hidden md:block px-6 py-2 rounded-lg font-label-md text-label-md text-on-surface border border-border-subtle hover:bg-surface-container-low transition-all active:scale-95">Login</button>
+<button class="px-6 py-2 rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-all active:scale-95">Register</button>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Content -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Cover Image -->
+<div class="w-full h-[400px] rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="A cinematic, high-resolution wide shot of a modern workspace with multiple high-definition screens displaying complex data visualizations and code. The lighting is focused and professional, highlighting a minimalist mechanical keyboard and a high-end mouse. The scene is set in a light-mode office environment with clean lines, white desks, and subtle red accents that reflect the brand's primary color. The mood is one of technical excellence and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxte3dXyVL5oAnP8uLT2IeNPNjEJ6j7Wtat4nuDhRBfJ_HW92djAfnumEbKHgY9-qm3rXL-8M5HZKJHiNNer4jfDsEnl4_-c0eE_DGcVQhwCvgRze7etDwRXZwextTyVw8qv4WI5WXOgP71TZl6vV2LvLLdfCXeMVkmv_IgJC0gAC3QLDD6DP37txcGa4dOYC-pmAn6I6C1-jCUKy8DAeXCmGW8q-eKThbSgZzNK5Hs4ZnnuOOwCKIbJbyuPwUn8CPyLc271QSjgE"/>
+</div>
+<!-- Markdown Content Area -->
+<article class="bg-surface-white p-8 rounded-xl border border-border-subtle markdown-content">
+<section id="problem">
+<h2 class="font-headline-sm text-headline-sm">Problem Nedir?</h2>
+<p class="font-body-md text-body-md">
+                            Günümüzde yazılım geliştirme süreçlerinde, özellikle akademik ve yarışma odaklı projelerde, geliştiricilerin çözüm ürettikleri problemleri dökümante etme ve geniş kitlelere ulaştırma konusunda ciddi engellerle karşılaştığı görülmektedir. Birçok yenilikçi fikir, profesyonel bir sunum alanı bulamadığı için dijital kütüphanelerin derinliklerinde kaybolmaktadır.
+                        </p>
+<p class="font-body-md text-body-md">
+                            Ayrıca, projelerin güvenlik ve etik standartlara uyumu çoğu zaman göz ardı edilmekte, bu da projelerin endüstriyel standartlara dönüşmesini engellemektedir.
+                        </p>
+</section>
+<section id="solution">
+<h2 class="font-headline-sm text-headline-sm">Çözüm Nedir?</h2>
+<p class="font-body-md text-body-md">
+                            Fikirden Ürüne Proje Vitrini, bu boşluğu doldurmak amacıyla geliştirilmiş, geliştirici odaklı bir platformdur. Bu çözüm ile projeler sadece bir "kod deposu" olmaktan çıkıp, problem tanımından gelecek planlarına kadar her aşamanın şeffaf bir şekilde sergilendiği profesyonel portfolyolara dönüşmektedir.
+                        </p>
+<p class="font-body-md text-body-md">
+                            Sistem, her projenin teknik yetkinliğini vurgularken aynı zamanda etik beyan mekanizması ile güvenilirliği ön planda tutar. Geliştiriciler projelerini birer "ürün" olarak sunma fırsatı yakalarlar.
+                        </p>
+</section>
+<section id="future-plans">
+<h2 class="font-headline-sm text-headline-sm">Gelecek Planları</h2>
+<p class="font-body-md text-body-md">
+                            1. Çoklu dil desteği ile uluslararası proje paylaşım ağı oluşturmak.<br/>
+                            2. Mentor-Öğrenci etkileşimini doğrudan platform üzerinden sağlayan entegre iletişim araçları.<br/>
+                            3. Projelerin teknoloji yığınlarına göre otomatik olarak kategorize edilmesi için yapay zeka tabanlı öneri sistemi.
+                        </p>
+</section>
+<!-- Critical Section: Ethics & Safety -->
+<section class="mt-stack-lg pt-stack-lg border-t border-border-subtle" id="ethics">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+                            Etik, Güvenlik ve Yapay Zekâ Kullanımı
+                        </h2>
+<div class="space-y-4 mt-6">
+<div class="alert-box p-4 rounded-lg">
+<h4 class="font-label-md text-label-md text-primary mb-1">Yapay Zekâ Kullanımı Beyanı</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bu proje geliştirilirken LLM tabanlı araçlardan (GitHub Copilot) mimari tasarım ve hata ayıklama süreçlerinde yararlanılmıştır. Ancak tüm lojik yapı ekip tarafından optimize edilmiştir.</p>
+</div>
+<div class="alert-box p-4 rounded-lg">
+<h4 class="font-label-md text-label-md text-primary mb-1">Veri Güvenliği Kontrolü</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sistem kullanıcı verilerini anonimleştirerek saklamaktadır. Hiçbir hassas veri (TCKN, şifre vb.) düz metin olarak veritabanında tutulmamaktadır.</p>
+</div>
+<div class="alert-box p-4 rounded-lg">
+<h4 class="font-label-md text-label-md text-primary mb-1">Akademik Dürüstlük</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kullanılan tüm açık kaynak kütüphaneler lisanslarına uygun şekilde atıf verilerek sisteme dahil edilmiştir.</p>
+</div>
+</div>
+</section>
+</article>
+</div>
+<!-- Right Column: Sticky Sidebar -->
+<aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-stack-md">
+<div class="bg-surface-white p-6 rounded-xl border border-border-subtle shadow-sm">
+<h1 class="font-headline-sm text-headline-sm mb-2 text-on-surface">Proje Vitrini Web Uygulaması</h1>
+<div class="flex items-center gap-2 mb-6">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[12px] font-bold rounded">WEB</span>
+<span class="px-2 py-1 bg-success/10 text-success text-[12px] font-bold rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+                            DOĞRULANDI
+                        </span>
+</div>
+<!-- Team -->
+<div class="space-y-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional, clean portrait of a middle-aged tech mentor with short dark hair and glasses, wearing a neutral-colored polo shirt. The background is a soft-focus office setting with warm indoor lighting. The style is professional, modern, and trustworthy, fitting the developer-focused design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqSLWTI7rjDrwqnQorOKYPJVwwvpOcDYBWIbR6lwE7j8fzqGE-v2cDjDLavm3ldSIdXVj8IKHlRVP_B3h7NvhncJa2OJpAjKHU2D1Q1gC0gbOctYzfHRf_8kZHrpCm1g0iNJWwaaChq1pExs4FZaBQojkR_bjNv0gHUEZxO6MdOUuucMXYil4y4MRDQORiBOrwATk9PX6ISiaAc7ulM4tyutt-a9g340vnLDDu0bjT_XFSO7fnFOeo_0_OsdJI4GgqbQ_pr5Q81vw"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary">Mentor</p>
+<p class="font-label-md text-label-md text-on-surface">Dr. Selim Yılmaz</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A friendly, professional portrait of a young computer science student, smiling confidently. They have short hair and are wearing a simple black t-shirt. The background is a minimalist, brightly lit studio environment with neutral grey tones. High-fidelity photography style with crisp detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALuC3E3oh-dr0Ou0NLGqNXXsKOT74qHQ23r0sYhJTz6DVx5cpKGvj6cZ6RuWTooxTEHuF7bhlkdhBL0KwJ3z7b6wdjaXpnWbK6iDVuWNPBL4tu_IQcoOL8SyIRhz2MM2Dv0TqoDuB4lAM2pxXVBX2yavaVsMQTW0Te84dJcB14aaMlIHv8i4r0j8Bu-0BkFCEqFYarENkr6CstVcBXCtVcTIn8Z0KJ34bxus097m8Sl_Ved3TLLTGOEXOBzxNKOWJG1BFSiXLT4tk"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary">Öğrenci</p>
+<p class="font-label-md text-label-md text-on-surface">Ayşe Kaya</p>
+</div>
+</div>
+</div>
+<hr class="border-border-subtle mb-6"/>
+<!-- Status & Badges -->
+<div class="space-y-3 mb-6">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[18px]" data-icon="smart_toy">smart_toy</span> AI Beyanı</span>
+<span class="font-semibold text-primary">Tamamlandı</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[18px]" data-icon="security">security</span> Güvenlik Kontrolü</span>
+<span class="font-semibold text-success">Geçti</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[18px]" data-icon="link">link</span> GitHub Bağlantısı</span>
+<span class="font-semibold text-on-surface">Aktif</span>
+</div>
+</div>
+<!-- Tech Tags -->
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm rounded-full">React</span>
+<span class="px-3 py-1 bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm rounded-full">Node.js</span>
+<span class="px-3 py-1 bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm rounded-full">Tailwind CSS</span>
+<span class="px-3 py-1 bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm rounded-full">PostgreSQL</span>
+</div>
+<!-- Actions -->
+<div class="space-y-stack-sm">
+<a class="block w-full text-center py-3 px-4 bg-inverse-surface text-surface-white font-label-md text-label-md rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                            GitHub Deposu
+                        </a>
+<a class="block w-full text-center py-3 px-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-container transition-all flex items-center justify-center gap-2 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+                            Canlı Demo
+                        </a>
+</div>
+</div>
+<!-- Stats/Activity Card -->
+<div class="bg-surface-white p-6 rounded-xl border border-border-subtle shadow-sm">
+<p class="font-label-md text-label-md text-on-surface mb-4">Proje İstatistikleri</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="text-center p-3 bg-surface-container-low rounded-lg">
+<p class="text-primary font-bold text-headline-sm">124</p>
+<p class="text-[12px] text-secondary">Görüntülenme</p>
+</div>
+<div class="text-center p-3 bg-surface-container-low rounded-lg">
+<p class="text-primary font-bold text-headline-sm">42</p>
+<p class="text-[12px] text-secondary">Yıldız</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-dim border-t border-border-subtle dark:border-outline-variant mt-20">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col md:flex-row justify-between items-center space-y-stack-md md:space-y-0">
+<div class="flex flex-col items-center md:items-start space-y-2">
+<span class="font-label-md text-label-md font-bold text-on-surface dark:text-inverse-on-surface">Fikirden Ürüne Proje Vitrini</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">© 2024 Fikirden Ürüne Proje Vitrini. Tüm hakları saklıdır.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-stack-lg gap-y-2">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Community Guidelines</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Interaction logic for buttons
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-95');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-95');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-95');
+            });
+        });
+
+        // Sticky Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 0) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

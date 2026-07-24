@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fikirden Ürüne Proje Vitrini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "warning": "#f59e0b",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-error": "#ffffff",
+                        "border-subtle": "#e5e7eb",
+                        "surface-container": "#edeeef",
+                        "tertiary": "#004394",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#ffcdc7",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary": "#575e70",
+                        "on-tertiary-container": "#c9d8ff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#93000b",
+                        "tertiary-container": "#005ac2",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed": "#001a42",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#5c6274",
+                        "outline-variant": "#e4beb9",
+                        "secondary-fixed": "#dce2f7",
+                        "error": "#ba1a1a",
+                        "outline": "#8f6f6c",
+                        "surface-tint": "#b91c1c",
+                        "inverse-primary": "#ffb4ab",
+                        "success": "#10b981",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-low": "#f3f4f5",
+                        "primary": "#93000b",
+                        "surface": "#f8f9fa",
+                        "primary-container": "#b91c1c",
+                        "primary-fixed": "#ffdad6",
+                        "on-primary-fixed": "#410002",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#5b403d",
+                        "on-surface": "#191c1d",
+                        "surface-dim": "#d9dadb",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "background": "#f8f9fa",
+                        "secondary-container": "#d9dff5",
+                        "surface-white": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "container-max": "1280px",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2rem",
+                        "margin-mobile": "1rem",
+                        "stack-md": "1rem",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-on-background bg-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-white dark:bg-inverse-surface border-b border-border-subtle dark:border-outline-variant shadow-sm dark:shadow-none docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-stack-md">
+<img alt="Fikirden Ürüne Logosu" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9pLmb0B0mWqAKJH5kCthIF0MfSrAFAIITgxVT6mT0DeiN7O5IgPBi08ywbLD5iG38AsJ2J9CkehhKZg0P2t7qyQnfaAIeXZDVpBlDgM_9ywyAa1rnXquJbp-W3XscqWjdNSWFnWn7V7L29S2BmwEcspVRciFnZ7FeOIkuskjApkUHiewqZYvBmkVWD7qDVkIFB37dnPhYKZFuu9r27TSFEYUwllIuv12CwHJLBledMf6wPiw5CTxb0f2AQtHL47obbyZsI68jVus"/>
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary hidden md:block">Fikirden Ürüne Proje Vitrini</span>
+</div>
+<nav class="hidden md:flex items-center space-x-gutter">
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">Projects</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 font-label-md text-label-md" href="#">About</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 font-label-md text-label-md" href="#">Ethical Principles</a>
+</nav>
+<div class="flex items-center gap-stack-sm">
+<button class="px-5 py-2 font-label-md text-label-md text-secondary hover:text-primary transition-colors active:scale-95 duration-100">Login</button>
+<button class="px-6 py-2.5 font-label-md text-label-md bg-primary-container text-on-primary rounded-lg hover:brightness-110 active:scale-95 transition-all duration-100 shadow-sm">Register</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-stack-lg pb-24 md:pt-32 md:pb-40 bg-surface-white">
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#93000b 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative">
+<div class="max-w-3xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-stack-md leading-tight">
+                    Fikirden Ürüne <br/>
+<span class="text-primary">Proje Vitrini</span>
+</h1>
+<p class="font-body-lg text-body-lg text-secondary mb-stack-lg max-w-2xl">
+                    Türkiye'nin dört bir yanından yükselen inovatif fikirleri, somut ürünlere ve projelere dönüştüren vizyoner geliştiricilerin buluşma noktası. MVP'den tam sürüm ürünlere kadar teknoloji yolculuğunu keşfedin.
+                </p>
+<div class="flex flex-col sm:flex-row gap-stack-md">
+<button class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-label-md text-label-md rounded shadow-sm hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined">rocket_launch</span>
+                        Projeleri İncele
+                    </button>
+<button class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border-subtle bg-white text-on-surface font-label-md text-label-md rounded shadow-sm hover:bg-surface-container-low transition-all active:scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+                        Projemi Ekle
+                    </button>
+</div>
+</div>
+</div>
+<!-- Abstract Decoration -->
+<div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full opacity-10">
+<div class="grid grid-cols-4 gap-4 h-full transform rotate-12">
+<div class="bg-primary rounded-full aspect-square"></div>
+<div class="bg-primary-fixed rounded-full aspect-square"></div>
+<div class="bg-primary rounded-full aspect-square"></div>
+<div class="bg-primary-fixed rounded-full aspect-square"></div>
+</div>
+</div>
+</section>
+<!-- Stat Bar -->
+<div class="bg-inverse-surface py-stack-lg relative z-10 -mt-10 mx-margin-mobile md:mx-auto max-w-5xl rounded-xl shadow-lg border border-outline-variant/20">
+<div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-outline-variant/20">
+<div class="px-gutter text-center">
+<div class="font-headline-sm text-headline-sm text-primary-fixed-dim font-bold">1,240+</div>
+<div class="font-label-sm text-label-sm text-inverse-on-surface/70 mt-1 uppercase tracking-wider">Yayındaki Proje</div>
+</div>
+<div class="px-gutter text-center">
+<div class="font-headline-sm text-headline-sm text-primary-fixed-dim font-bold">156</div>
+<div class="font-label-sm text-label-sm text-inverse-on-surface/70 mt-1 uppercase tracking-wider">Konya Projesi</div>
+</div>
+<div class="px-gutter text-center">
+<div class="font-headline-sm text-headline-sm text-primary-fixed-dim font-bold">84</div>
+<div class="font-label-sm text-label-sm text-inverse-on-surface/70 mt-1 uppercase tracking-wider">Afyonkarahisar Projesi</div>
+</div>
+<div class="px-gutter text-center">
+<div class="font-headline-sm text-headline-sm text-primary-fixed-dim font-bold">412</div>
+<div class="font-label-sm text-label-sm text-inverse-on-surface/70 mt-1 uppercase tracking-wider">Yapay Zeka Destekli</div>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<section class="mt-stack-lg py-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="bg-surface-white border border-border-subtle rounded-xl shadow-sm p-gutter flex flex-col lg:flex-row items-end gap-stack-md">
+<div class="w-full lg:flex-1">
+<label class="block font-label-md text-label-md text-secondary mb-2">Proje Ara</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Proje adı, teknoloji veya geliştirici..." type="text"/>
+</div>
+</div>
+<div class="w-full lg:w-48">
+<label class="block font-label-md text-label-md text-secondary mb-2">Kategori</label>
+<select class="w-full px-3 py-2.5 border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none appearance-none bg-white">
+<option>Tüm Kategoriler</option>
+<option>Yapay Zeka</option>
+<option>SaaS</option>
+<option>Mobil Uygulama</option>
+<option>Fintech</option>
+</select>
+</div>
+<div class="w-full lg:w-48">
+<label class="block font-label-md text-label-md text-secondary mb-2">Konum</label>
+<select class="w-full px-3 py-2.5 border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none appearance-none bg-white">
+<option>Tüm Türkiye</option>
+<option>Konya</option>
+<option>Afyonkarahisar</option>
+<option>İstanbul</option>
+<option>Ankara</option>
+</select>
+</div>
+<div class="w-full lg:w-48">
+<label class="block font-label-md text-label-md text-secondary mb-2">Aşama</label>
+<select class="w-full px-3 py-2.5 border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none appearance-none bg-white">
+<option>Hepsi</option>
+<option>Fikir Aşamasında</option>
+<option>Prototip / MVP</option>
+<option>Yayında / Aktif</option>
+</select>
+</div>
+<button class="w-full lg:w-auto px-8 py-2.5 bg-primary text-white font-label-md text-label-md rounded-lg hover:brightness-110 active:scale-95 transition-all">
+                    Filtrele
+                </button>
+</div>
+</div>
+</section>
+<!-- Project Grid -->
+<section class="pb-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex justify-between items-center mb-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Öne Çıkan Projeler</h2>
+<div class="flex gap-2">
+<span class="font-label-sm text-label-sm text-secondary">Sıralama:</span>
+<button class="font-label-sm text-label-sm text-primary font-bold">En Yeniler</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<article class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+<div class="h-48 bg-cover bg-center bg-surface-container-low group-hover:scale-105 transition-transform duration-500" data-alt="A professional high-resolution screen capture of a SaaS dashboard interface. The design features a clean white background with a dark sidebar and primary red action buttons. Data visualizations like line charts and bar graphs are displayed in a minimal, developer-focused aesthetic. The lighting is bright and uniform, suggesting a modern workspace environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDisWQyr4zey2ghaTalRYZm2eDUozKuPCTLGQ54BJAbs4PIptFsp2qAYHGXZ59jhHhm-zrRIecISHnPpvjYsaCMdMqElqaIkEaHADFquRhpsZMMuU6xQvD25oBZ-n_wAyy-n9ExT7fnQJuqZN11xYj9m_u_RbpwZt29ENVAsCKWq5gv4mB3t_IB7kHEZnlG__lHpmI8egfpLHNiV_wI7pCjmbIy8f8Dkrje7MrvIdidxT8sUSUYnfVnlCJEx2RO_23GW1PlYdGlR38')"></div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-tertiary/10 text-tertiary">Yapay Zeka</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-success/10 text-success">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span>
+                                MVP
+                            </span>
+</div>
+<h3 class="font-headline-sm text-[20px] text-on-surface mb-2">LinguistAI Platform</h3>
+<p class="font-body-sm text-body-sm text-secondary line-clamp-2 mb-stack-md">
+                            Yerel diller için özelleştirilmiş, düşük gecikmeli doğal dil işleme kütüphanesi ve entegrasyon API'si.
+                        </p>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md mt-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-secondary font-bold text-xs">MK</div>
+<span class="font-label-sm text-label-sm text-on-surface">Mert Kaya</span>
+</div>
+<div class="flex items-center gap-3 text-secondary">
+<div class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-[18px]">favorite</span> 24</div>
+<div class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-[18px]">visibility</span> 1.2k</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+<div class="h-48 bg-cover bg-center bg-surface-container-low group-hover:scale-105 transition-transform duration-500" data-alt="A high-tech mobile application interface for smart city management, displayed on a floating 3D smartphone mockup. The UI uses a deep charcoal and primary red color palette with sleek neon accents. The background features a blurred cityscape of Konya at twilight, creating a sense of scale and regional relevance. The lighting is atmospheric with soft glows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6Bc5Kd5AbhpywrbG4r1E32pKM4L0zFFghm-3WqQP0N3AX80ghcIhSrSMn6TtulhB3-dYnUgeksYCTYwzN5O_TKbLI_TgSo5Mc-omzm0FiKq3aeiuJrw1mYSIYwBQrbNLCwfh_WUzy_K9igCbdl6UdHjov7l7FnyXBVHrt9HvtjRSNYM4OYkYKcY80AWF4jFAt19sbMKRp6auNPp2FWGbM_KkKWGummS2UYbcgz3cPyyOMoayF2kTf1FPYgQso-G79e801hmeRE3M')"></div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-warning/10 text-warning">Akıllı Şehirler</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-success/10 text-success">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span>
+                                Prototip
+                            </span>
+</div>
+<h3 class="font-headline-sm text-[20px] text-on-surface mb-2">Konya Enerji Takip</h3>
+<p class="font-body-sm text-body-sm text-secondary line-clamp-2 mb-stack-md">
+                            Belediye binaları için IoT tabanlı, gerçek zamanlı enerji tüketim optimizasyonu ve raporlama paneli.
+                        </p>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md mt-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-secondary font-bold text-xs">AS</div>
+<span class="font-label-sm text-label-sm text-on-surface">Ayşe Soylu</span>
+</div>
+<div class="flex items-center gap-3 text-secondary">
+<div class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-[18px]">favorite</span> 56</div>
+<div class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-[18px]">visibility</span> 2.5k</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+<div class="h-48 bg-cover bg-center bg-surface-container-low group-hover:scale-105 transition-transform duration-500" data-alt="An artistic representation of a blockchain ledger or data stream. Cascading lines of code and glowing nodes are depicted in a minimalist, 3D perspective. The color scheme is dominated by white, light grey, and sharp primary red highlights for the 'active' nodes. The style is technical, crisp, and futuristic, perfectly aligned with a developer-focused portfolio site." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvo6LNASOUxLBhKsPEeyQOa1mFY60fTI2LU3QIhw6caozbUilO1ZnNxhwBK_XoSBL9YLabaoY9-6b6oKjSWAxtWYhIxOiUf4603RnRZYXBpfe_LSJWOgPXLsA_HwAdEGpF1wSMf4FZPwBNKLF9jC-6fit7tUWtF8wsIDQEOIOUqAKO9kS5FrkH0yOw15L91QDeUAwmJW3oiqd3Qfx9-vDxyIPw55YQ6NhBIWVv1KmV54-u1pLDc0OC5k62NMY_AdaZVs2B_t9-sss')"></div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-secondary/10 text-secondary">Blockchain</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-bold bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">bolt</span>
+                                Yayında
+                            </span>
+</div>
+<h3 class="font-headline-sm text-[20px] text-on-surface mb-2">ChainProof Log</h3>
+<p class="font-body-sm text-body-sm text-secondary line-clamp-2 mb-stack-md">
+                            Tedarik zinciri verilerini değişmez bir şekilde kayıt altına alan açık kaynaklı blockchain protokolü.
+                        </p>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md mt-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-secondary font-bold text-xs">TD</div>
+<span class="font-label-sm text-label-sm text-on-surface">Tolga Demir</span>
+</div>
+<div class="flex items-center gap-3 text-secondary">
+<div class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-[18px]">favorite</span> 128</div>
+<div class="flex items-center gap-1 text-label-sm"><span class="material-symbols-outlined text-[18px]">visibility</span> 4.8k</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-stack-lg flex justify-center">
+<button class="px-8 py-3 border border-primary text-primary font-label-md text-label-md rounded hover:bg-primary hover:text-white transition-all active:scale-95">
+                    Daha Fazla Yükle
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-dim border-t border-border-subtle dark:border-outline-variant full-width">
+<div class="flex flex-col md:flex-row justify-between items-center py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-stack-md md:space-y-0">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-label-md text-label-md font-bold text-on-surface dark:text-inverse-on-surface mb-2 uppercase">Fikirden Ürüne</span>
+<p class="font-body-sm text-body-sm text-secondary dark:text-surface-variant">© 2024 Fikirden Ürüne Proje Vitrini. Tüm hakları saklıdır.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-stack-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Community Guidelines</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:bg-surface-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:bg-surface-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 1;">share</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for Stat Bar counters
+        function animateCounter(el, target) {
+            let current = 0;
+            const duration = 2000;
+            const stepTime = Math.abs(Math.floor(duration / target));
+            const timer = setInterval(() => {
+                current += 1;
+                el.innerText = (current >= target) ? target + (el.innerText.includes('+') ? '+' : '') : current;
+                if (current >= target) clearInterval(timer);
+            }, stepTime);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.font-headline-sm.text-primary-fixed-dim');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetStr = entry.target.innerText.replace(/,/g, '').replace('+', '');
+                        const target = parseInt(targetStr);
+                        animateCounter(entry.target, target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        });
+    </script>
+</body></html>
