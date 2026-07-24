@@ -1,0 +1,34 @@
+# Fikirden Ürüne Proje Vitrini - UI/UX Design System
+
+## 1. Design Principles (Tasarım Prensipleri)
+*   **Minimal & Developer-Focused:** Modern, temiz, gereksiz detaylardan arındırılmış, GitHub veya Vercel arayüzleri gibi geliştirici dostu bir görünüm.
+*   **Accessibility First:** Yüksek kontrastlı metinler, belirgin buton durumları (hover, active, disabled).
+*   **Mobile-First:** Tüm ekranlar önce mobil cihazlar için tasarlanmalı, ardından masaüstü genişliklerine (Tailwind `md:`, `lg:`, `xl:`) uyarlanmalıdır.
+
+## 2. Color Palette (Renk Paleti)
+GençTek kurumsal kimliği ile uyumlu modern bir palet:
+*   **Primary (Brand):** 
+    *   Base: `#b91c1c` (Kırmızı - GençTek Rengi)
+    *   Hover: `#991b1b`
+    *   Light (Backgrounds): `#fee2e2`
+*   **Neutral (Typography & Backgrounds):**
+    *   Background (App): `#f9fafb` veya `#faf8f5` (Çok hafif sıcak gri/kırık beyaz)
+    *   Surface (Cards/Modals): `#ffffff` (Beyaz)
+    *   Text Primary: `#111827` (Çok koyu gri)
+    *   Text Secondary: `#4b5563` (Orta gri)
+    *   Border: `#e5e7eb`
+*   **Semantic:**
+    *   Success (Approved/Verified): `#10b981`
+    *   Warning (Pending/Draft): `#f59e0b`
+    *   Info (AI Badge): `#3b82f6`
+
+## 3. Typography (Tipografi)
+*   **Font Family:** Inter, Roboto veya sistem varsayılanı sans-serif (`font-sans`).
+*   **Headings:** Kalın (Bold/Semibold), sıkı harf aralığı (tight tracking).
+*   **Body:** 16px tabanlı, kolay okunabilir satır yüksekliği (`leading-relaxed`).
+
+## 4. Key UI Components (Temel Bileşenler)
+*   **Buttons:** Hafif yuvarlatılmış köşeler (`rounded-md`), belirgin padding, hover durumlarında hafif gölge veya renk koyulaşması.
+*   **Cards:** Beyaz arka plan, ince gri çerçeve (`border`), çok hafif gölge (`shadow-sm`).
+*   **Badges/Tags:** Küçük, köşeleri yuvarlatılmış (`rounded-full`), kategori veya statü belirten renkli etiketler (Örn: "Yapay Zeka Destekli" etiketi mavi veya kırmızı tonlarında).
+*   **Inputs/Forms:** Belirgin çerçeve, focus durumunda Primary renk ile ring (halka) efekti.
