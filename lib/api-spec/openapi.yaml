@@ -3,20 +3,30 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Fikirden Ürüne Proje Vitrini API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: auth
+    description: Authentication
+  - name: projects
+    description: Public project operations
+  - name: stats
+    description: Platform statistics
+  - name: student
+    description: Student dashboard
+  - name: admin
+    description: Admin dashboard
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +34,720 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /auth/register:
+    post:
+      operationId: register
+      tags: [auth]
+      summary: Register a new student account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterInput"
+      responses:
+        "201":
+          description: Registered and logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthUser"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Email already in use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/login:
+    post:
+      operationId: login
+      tags: [auth]
+      summary: Log in with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        "200":
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthUser"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/logout:
+    post:
+      operationId: logout
+      tags: [auth]
+      summary: Log out current session
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current user session
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthUser"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /stats:
+    get:
+      operationId: getStats
+      tags: [stats]
+      summary: Platform statistics
+      responses:
+        "200":
+          description: Stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlatformStats"
+
+  /projects:
+    get:
+      operationId: listProjects
+      tags: [projects]
+      summary: List approved projects (public)
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+            enum: [Konya, Afyonkarahisar]
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [web-tasarim-ve-gelistirme, mobil-uygulama, oyun-gelistirme, yapay-zeka]
+        - name: stage
+          in: query
+          schema:
+            type: string
+            enum: [MVP, Prototip]
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of approved projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectSummary"
+
+  /projects/{id}:
+    get:
+      operationId: getProject
+      tags: [projects]
+      summary: Get project detail (public, approved only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Project detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /student/projects:
+    get:
+      operationId: listMyProjects
+      tags: [student]
+      summary: List current student's projects
+      responses:
+        "200":
+          description: My projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    post:
+      operationId: createProject
+      tags: [student]
+      summary: Create a new project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProjectInput"
+      responses:
+        "201":
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /student/projects/{id}:
+    patch:
+      operationId: updateProject
+      tags: [student]
+      summary: Update a student's own project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProjectPatch"
+      responses:
+        "200":
+          description: Updated project
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "403":
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteProject
+      tags: [student]
+      summary: Delete a student's own project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "403":
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/projects:
+    get:
+      operationId: listAdminProjects
+      tags: [admin]
+      summary: List all projects for admin review
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, approved, rejected, draft]
+      responses:
+        "200":
+          description: All projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminProject"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Not admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/projects/{id}/approve:
+    patch:
+      operationId: approveProject
+      tags: [admin]
+      summary: Approve a project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "403":
+          description: Not admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/projects/{id}/reject:
+    patch:
+      operationId: rejectProject
+      tags: [admin]
+      summary: Reject a project with feedback
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectInput"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "403":
+          description: Not admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
 components:
   schemas:
     HealthStatus:
       type: object
+      required: [status]
       properties:
         status:
           type: string
-      required:
-        - status
 
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+
+    SuccessResponse:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+
+    AuthUser:
+      type: object
+      required: [id, email, fullName, school, city, role]
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        fullName:
+          type: string
+        school:
+          type: string
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+        role:
+          type: string
+          enum: [student, admin]
+
+    RegisterInput:
+      type: object
+      required: [email, password, fullName, school, city]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+          minLength: 6
+        fullName:
+          type: string
+          minLength: 2
+        school:
+          type: string
+          minLength: 2
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+
+    LoginInput:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    PlatformStats:
+      type: object
+      required: [total, konya, afyonkarahisar, aiSupported]
+      properties:
+        total:
+          type: integer
+        konya:
+          type: integer
+        afyonkarahisar:
+          type: integer
+        aiSupported:
+          type: integer
+
+    AiUsage:
+      type: object
+      required: [isUsed, tools, usageAreas, verificationMethod]
+      properties:
+        isUsed:
+          type: boolean
+        tools:
+          type: array
+          items:
+            type: string
+        usageAreas:
+          type: array
+          items:
+            type: string
+        verificationMethod:
+          type: string
+
+    SecurityAndEthics:
+      type: object
+      required: [noRealPersonalData, noSecretsInGithub, copyrightCompliant]
+      properties:
+        noRealPersonalData:
+          type: boolean
+        noSecretsInGithub:
+          type: boolean
+        copyrightCompliant:
+          type: boolean
+
+    ProjectSummary:
+      type: object
+      required: [id, title, slug, category, city, stage, status, coverUrl, techStack, aiUsage, createdAt, studentName]
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        slug:
+          type: string
+        category:
+          type: string
+          enum: [web-tasarim-ve-gelistirme, mobil-uygulama, oyun-gelistirme, yapay-zeka]
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+        stage:
+          type: string
+          enum: [MVP, Prototip]
+        status:
+          type: string
+          enum: [pending, approved, rejected, draft]
+        coverUrl:
+          type: ["string", "null"]
+        techStack:
+          type: array
+          items:
+            type: string
+        aiUsage:
+          $ref: "#/components/schemas/AiUsage"
+        createdAt:
+          type: string
+        studentName:
+          type: string
+
+    Project:
+      type: object
+      required: [id, title, slug, category, city, stage, status, coverUrl, screenshotUrls, techStack, githubUrl, demoUrl, aiUsage, securityAndEthics, createdAt, updatedAt, studentId, studentName, problem, targetAudience, solution, futurePlans, adminFeedback]
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        studentName:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        category:
+          type: string
+          enum: [web-tasarim-ve-gelistirme, mobil-uygulama, oyun-gelistirme, yapay-zeka]
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+        stage:
+          type: string
+          enum: [MVP, Prototip]
+        problem:
+          type: string
+        targetAudience:
+          type: string
+        solution:
+          type: string
+        futurePlans:
+          type: string
+        techStack:
+          type: array
+          items:
+            type: string
+        githubUrl:
+          type: ["string", "null"]
+        demoUrl:
+          type: ["string", "null"]
+        coverUrl:
+          type: ["string", "null"]
+        screenshotUrls:
+          type: array
+          items:
+            type: string
+        aiUsage:
+          $ref: "#/components/schemas/AiUsage"
+        securityAndEthics:
+          $ref: "#/components/schemas/SecurityAndEthics"
+        status:
+          type: string
+          enum: [pending, approved, rejected, draft]
+        adminFeedback:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+    AdminProject:
+      type: object
+      required: [id, title, slug, category, city, stage, status, coverUrl, techStack, aiUsage, createdAt, studentName, studentEmail, adminFeedback]
+      properties:
+        id:
+          type: integer
+        studentName:
+          type: string
+        studentEmail:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        category:
+          type: string
+          enum: [web-tasarim-ve-gelistirme, mobil-uygulama, oyun-gelistirme, yapay-zeka]
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+        stage:
+          type: string
+          enum: [MVP, Prototip]
+        status:
+          type: string
+          enum: [pending, approved, rejected, draft]
+        coverUrl:
+          type: ["string", "null"]
+        techStack:
+          type: array
+          items:
+            type: string
+        aiUsage:
+          $ref: "#/components/schemas/AiUsage"
+        adminFeedback:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+
+    ProjectInput:
+      type: object
+      required: [title, category, city, stage, problem, targetAudience, solution, futurePlans, techStack, aiUsage, securityAndEthics, status]
+      properties:
+        title:
+          type: string
+          minLength: 3
+        category:
+          type: string
+          enum: [web-tasarim-ve-gelistirme, mobil-uygulama, oyun-gelistirme, yapay-zeka]
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+        stage:
+          type: string
+          enum: [MVP, Prototip]
+        problem:
+          type: string
+        targetAudience:
+          type: string
+        solution:
+          type: string
+        futurePlans:
+          type: string
+        techStack:
+          type: array
+          items:
+            type: string
+        githubUrl:
+          type: string
+        demoUrl:
+          type: string
+        coverUrl:
+          type: string
+        screenshotUrls:
+          type: array
+          items:
+            type: string
+        aiUsage:
+          $ref: "#/components/schemas/AiUsage"
+        securityAndEthics:
+          $ref: "#/components/schemas/SecurityAndEthics"
+        status:
+          type: string
+          enum: [draft, pending]
+
+    ProjectPatch:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 3
+        category:
+          type: string
+          enum: [web-tasarim-ve-gelistirme, mobil-uygulama, oyun-gelistirme, yapay-zeka]
+        city:
+          type: string
+          enum: [Konya, Afyonkarahisar]
+        stage:
+          type: string
+          enum: [MVP, Prototip]
+        problem:
+          type: string
+        targetAudience:
+          type: string
+        solution:
+          type: string
+        futurePlans:
+          type: string
+        techStack:
+          type: array
+          items:
+            type: string
+        githubUrl:
+          type: string
+        demoUrl:
+          type: string
+        coverUrl:
+          type: string
+        screenshotUrls:
+          type: array
+          items:
+            type: string
+        aiUsage:
+          $ref: "#/components/schemas/AiUsage"
+        securityAndEthics:
+          $ref: "#/components/schemas/SecurityAndEthics"
+        status:
+          type: string
+          enum: [draft, pending]
+
+    RejectInput:
+      type: object
+      required: [feedback]
+      properties:
+        feedback:
+          type: string
+          minLength: 5

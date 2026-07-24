@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Fikirden Ürüne Proje Vitrini"
+version = "1.0.0"
+id = "artifacts/proje-vitrini"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25422
+
+[services.development]
+run = "pnpm --filter @workspace/proje-vitrini run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/proje-vitrini", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/proje-vitrini/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25422"
+BASE_PATH = "/"

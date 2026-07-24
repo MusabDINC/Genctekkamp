@@ -1,45 +1,61 @@
-# [Project name]
+# Fikirden Ürüne Proje Vitrini
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+GençTek ekosistemi öğrencilerinin (Konya & Afyonkarahisar) yapay zeka destekli projelerini sergilediği, onay akışlı bir proje vitrin platformu.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- `pnpm --filter @workspace/api-server run dev` — API sunucusu (port 8080)
+- `pnpm --filter @workspace/proje-vitrini run dev` — Frontend (port 25422)
+- `pnpm run typecheck` — tüm paketlerde tip kontrolü
+- `pnpm run build` — typecheck + build
+- `pnpm --filter @workspace/api-spec run codegen` — OpenAPI'dan hook ve Zod şemaları üret
+- `pnpm --filter @workspace/db run push` — DB şemasını uygula (sadece dev)
+- Required env: `DATABASE_URL`, `SESSION_SECRET`
+
+## Demo Hesaplar
+
+- **Admin:** admin@genctek.com / admin123
+- **Öğrenci:** ahmet@genctek.com / admin123
+- **Öğrenci:** zeynep@genctek.com / admin123
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
+- Frontend: React 18 + Vite + Tailwind CSS + shadcn/ui + wouter
+- API: Express 5 + express-session + bcryptjs
 - DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Validation: Zod (zod/v4), drizzle-zod
+- API codegen: Orval (OpenAPI → React Query hooks)
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `lib/api-spec/openapi.yaml` — API kontratının tek kaynağı
+- `lib/db/src/schema/` — users.ts, projects.ts Drizzle tabloları
+- `artifacts/api-server/src/routes/` — auth, stats, projects, student, admin
+- `artifacts/proje-vitrini/src/` — React frontend
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Firebase yerine Express session + PostgreSQL kullanıldı (Replit altyapısıyla uyumlu)
+- OpenAPI-first: tüm tipler ve hook'lar Orval ile generate edilir, elle yazılmaz
+- Admin rol kontrolü session tabanlı middleware ile yapılır
+- Dizi alanları (techStack, aiTools vb.) PostgreSQL text[] olarak saklanır
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- **Vitrin** (`/`): Hero stats + filtreli proje grid'i (şehir, kategori, aşama)
+- **Proje Detayı** (`/projects/:id`): Problem/Çözüm, YZ Kullanım Beyanı, Güvenlik/Etik bölümü
+- **Kayıt/Giriş** (`/register`, `/login`): E-posta + şifre
+- **Öğrenci Paneli** (`/dashboard`): Proje listesi, durum takibi
+- **Proje Gönderimi** (`/dashboard/submit`): 4 adımlı form (Temel Bilgi → Medya → Tech/Linkler → YZ & Etik)
+- **Admin Paneli** (`/admin`): İnceleme kuyruğu, onay/ret akışı
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+_Populate as you build._
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
-
-## Pointers
-
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- Codegen'den sonra mutlaka `pnpm run typecheck:libs` çalıştır; aksi halde api-server stale tipler görür
+- PostgreSQL array kolonları: `text("col").array()` syntax; JSON string olarak geçme
+- Express 5'te wildcard route: `/{*splat}` gerekli, `*` değil
