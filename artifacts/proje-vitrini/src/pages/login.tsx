@@ -45,7 +45,11 @@ export default function Login() {
       { data: values },
       {
         onSuccess: (data) => {
-          queryClient.invalidateQueries({ queryKey: getGetMeQueryKey() });
+          // invalidateQueries arka planda yeniden fetch tetikler; yönlendirme
+          // hemen ardından yapıldığında ProtectedRoute henüz eski (giriş
+          // yapılmamış) "user: null" durumunu görüp tekrar /login'e atıyordu.
+          // setQueryData ile cache'i senkron güncelleyip bu yarış durumunu önlüyoruz.
+          queryClient.setQueryData(getGetMeQueryKey(), data);
           toast({
             title: 'Giriş Başarılı',
             description: `Hoş geldin, ${data.fullName}`,

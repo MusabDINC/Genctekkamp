@@ -53,7 +53,9 @@ export default function Register() {
       { data: values },
       {
         onSuccess: (data) => {
-          queryClient.invalidateQueries({ queryKey: getGetMeQueryKey() });
+          // login.tsx'teki aynı yarış durumu önlemi: invalidateQueries yerine
+          // setQueryData ile cache'i senkron güncelliyoruz.
+          queryClient.setQueryData(getGetMeQueryKey(), data);
           toast({
             title: 'Kayıt Başarılı',
             description: `Aramıza hoş geldin, ${data.fullName}!`,
