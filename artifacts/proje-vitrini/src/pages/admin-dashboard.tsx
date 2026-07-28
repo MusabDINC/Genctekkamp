@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useListAdminProjects, useApproveProject, useRejectProject, getListAdminProjectsQueryKey } from '@workspace/api-client-react';
+import { useListAdminProjects, useApproveProject, useRejectProject, useDeleteAdminProject, getListAdminProjectsQueryKey } from '@workspace/api-client-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Check, X, ExternalLink, Bot, AlertCircle } from 'lucide-react';
+import { Check, X, ExternalLink, Bot, AlertCircle, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { format } from 'date-fns';
 import { tr } from 'date-fns/locale';
@@ -17,12 +17,16 @@ export default function AdminDashboard() {
   const { data: projects, isLoading } = useListAdminProjects({ status: filter });
   const approveProject = useApproveProject();
   const rejectProject = useRejectProject();
+  const deleteProject = useDeleteAdminProject();
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   const [rejectModalOpen, setRejectModalOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
   const [feedback, setFeedback] = useState('');
+
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [projectToDelete, setProjectToDelete] = useState<{ id: number; title: string } | null>(null);
 
   const handleApprove = (id: number) => {
     approveProject.mutate(
@@ -31,6 +35,25 @@ export default function AdminDashboard() {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: getListAdminProjectsQueryKey() });
           toast({ title: 'Proje onaylandı ve vitrine eklendi.', className: 'bg-success text-white' });
+        },
+        onError: (err: any) => {
+          toast({ title: 'Hata', description: err.error, variant: 'destructive' });
+        }
+      }
+    );
+  };
+
+  const handleDeleteConfirm = () => {
+    if (!projectToDelete) return;
+
+    deleteProject.mutate(
+      { id: projectToDelete.id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: getListAdminProjectsQueryKey() });
+          toast({ title: 'Proje silindi.' });
+          setDeleteModalOpen(false);
+          setProjectToDelete(null);
         },
         onError: (err: any) => {
           toast({ title: 'Hata', description: err.error, variant: 'destructive' });
@@ -164,6 +187,18 @@ export default function AdminDashboard() {
                     <ExternalLink className="w-4 h-4" /> İncele
                   </Button>
                 </Link>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full gap-2 text-destructive hover:bg-destructive/10 hover:text-destructive"
+                  onClick={() => {
+                    setProjectToDelete({ id: project.id, title: project.title });
+                    setDeleteModalOpen(true);
+                  }}
+                >
+                  <Trash2 className="w-4 h-4" /> Sil
+                </Button>
               </div>
             </div>
           ))}
@@ -195,6 +230,24 @@ export default function AdminDashboard() {
             <Button variant="ghost" onClick={() => setRejectModalOpen(false)}>İptal</Button>
             <Button variant="destructive" onClick={handleRejectSubmit} disabled={rejectProject.isPending}>
               Projeyi Reddet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirm Modal */}
+      <Dialog open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Projeyi Sil</DialogTitle>
+            <DialogDescription>
+              "{projectToDelete?.title}" adlı projeyi kalıcı olarak silmek üzeresiniz. Bu işlem geri alınamaz.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setDeleteModalOpen(false)}>İptal</Button>
+            <Button variant="destructive" onClick={handleDeleteConfirm} disabled={deleteProject.isPending}>
+              Kalıcı Olarak Sil
             </Button>
           </DialogFooter>
         </DialogContent>

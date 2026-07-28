@@ -491,3 +491,13 @@ export const RejectProjectResponse = zod.object({
 })
 
 
+/**
+ * @summary Delete a project (admin)
+ */
+export const DeleteAdminProjectParams = zod.object({
+  "id": zod.coerce.number()
+})
+
+export const DeleteAdminProjectResponse = zod.void()
+
+

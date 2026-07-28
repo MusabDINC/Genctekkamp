@@ -1187,3 +1187,74 @@ export const useRejectProject = <TError = ErrorType<ErrorResponse>,
       return useMutation(getRejectProjectMutationOptions(options));
     }
 
+export const getDeleteAdminProjectUrl = (id: number,) => {
+
+
+
+
+  return `/api/admin/projects/${id}`
+}
+
+/**
+ * @summary Delete a project (admin)
+ */
+export const deleteAdminProject = async (id: number, options?: RequestInit): Promise<void> => {
+
+  return customFetch<void>(getDeleteAdminProjectUrl(id),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+
+export const getDeleteAdminProjectMutationOptions = <TError = ErrorType<ErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteAdminProject>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteAdminProject>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['deleteAdminProject'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteAdminProject>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  deleteAdminProject(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteAdminProjectMutationResult = NonNullable<Awaited<ReturnType<typeof deleteAdminProject>>>
+
+    export type DeleteAdminProjectMutationError = ErrorType<ErrorResponse>
+
+    /**
+ * @summary Delete a project (admin)
+ */
+export const useDeleteAdminProject = <TError = ErrorType<ErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteAdminProject>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof deleteAdminProject>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getDeleteAdminProjectMutationOptions(options));
+    }
+

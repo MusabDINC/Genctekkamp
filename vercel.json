@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm --filter @workspace/proje-vitrini run build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "artifacts/proje-vitrini/dist/public",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

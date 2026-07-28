@@ -9,6 +9,7 @@ import {
   RejectProjectParams,
   RejectProjectBody,
   RejectProjectResponse,
+  DeleteAdminProjectParams,
 } from "@workspace/api-zod";
 import { requireAdmin } from "../middlewares/requireAuth";
 import { mapProject } from "./projects";
@@ -122,6 +123,30 @@ router.patch("/admin/projects/:id/reject", requireAdmin, async (req, res): Promi
   const [user] = await db.select().from(usersTable).where(eq(usersTable.id, existing.studentId)).limit(1);
 
   res.json(RejectProjectResponse.parse(mapProject(updated!, user)));
+});
+
+router.delete("/admin/projects/:id", requireAdmin, async (req, res): Promise<void> => {
+  const rawId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+  const paramsParsed = DeleteAdminProjectParams.safeParse({ id: parseInt(rawId ?? "0", 10) });
+  if (!paramsParsed.success) {
+    res.status(400).json({ error: paramsParsed.error.message });
+    return;
+  }
+
+  const [existing] = await db
+    .select()
+    .from(projectsTable)
+    .where(eq(projectsTable.id, paramsParsed.data.id))
+    .limit(1);
+
+  if (!existing) {
+    res.status(404).json({ error: "Proje bulunamadı." });
+    return;
+  }
+
+  await db.delete(projectsTable).where(eq(projectsTable.id, paramsParsed.data.id));
+
+  res.sendStatus(204);
 });
 
 export default router;
